@@ -71,11 +71,25 @@ export default async (options) => {
     }
 
     // Embed Footer
-    if (!options.embed.footer) {
-        options.embed.footer = '©️ M3rcena Development';
+    if (!options.embed.footer) options.embed.footer = {};
+    if (typeof options.embed.footer !== 'object') {
+        throw new Error(`${Chalk.red('[@M3rcena/Moderate]:')} embed footer must be an object.`)
     }
-    if (typeof options.embed.footer !== 'string') {
-        throw new Error(`${Chalk.red('[@M3rcena/Moderate]:')} embed footer must be a string.`)
+
+    if (!options.embed.footer.text) {
+        options.embed.footer.text = '©️ M3rcena Development';
+    }
+
+    if (typeof options.embed.footer.text !== 'string') {
+        throw new Error(`${Chalk.red('[@M3rcena/Moderate]:')} embed footer text must be a string.`)
+    }
+
+    if (!options.embed.footer.icon) {
+        options.embed.footer.icon = 'https://cdn.discordapp.com/avatars/1068868597398650971/8a357794253da9e32704b4711a0b366b.png';
+    }
+
+    if (typeof options.embed.footer.icon !== 'string') {
+        throw new Error(`${Chalk.red('[@M3rcena/Moderate]:')} embed footer icon must be a string.`)
     }
 
     // Embed Timestamp
@@ -166,7 +180,10 @@ export default async (options) => {
             })
             .setDescription(options.embed.description)
             .setThumbnail(options.embed.thumbnail)
-            .setFooter(options.embed.footer)
+            .setFooter({
+                text: options.embed.footer.text,
+                iconURL: options.embed.footer.icon
+            })
             .setTimestamp(options.embed.timestamp)
             .setImage(options.embed.image);
 
