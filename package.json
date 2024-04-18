@@ -1,0 +1,19 @@
+{
+  "name": "@m3rcena/moderate",
+  "version": "1.0.0",
+  "description": "Make easier your Moderation Discord Commands",
+  "main": "src/index.mjs",
+  "scripts": {
+    "test": "nodemon test/index.mjs"
+  },
+  "keywords": [
+    "Discord",
+    "Moderate"
+  ],
+  "author": "M3rcena",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "discord.js": "^14.14.1"
+  }
+}
